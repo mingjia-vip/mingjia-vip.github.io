@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://mingjia-vip.github.io/2017/11/01/test/</loc>
+    <lastmod>2018-02-09T07:36:07.299Z</lastmod>
+    <data>
+        <display>
+        <title>test</title>
+        <pubTime>2017-11-01T07:07:09.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="生活" url="https://mingjia-vip.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://mingjia-vip.github.io/2017/11/13/HEXO%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-02-08T08:38:38.875Z</lastmod>
+    <data>
+        <display>
+        <title>HEXO搭建个人博客</title>
+        <pubTime>2017-11-13T12:31:39.000Z</pubTime>
+        
+        <tag>hexo</tag>
+         
+        <tag>githup</tag>
+         
+         
+           
+             
+              <breadCrumb title="技能" url="https://mingjia-vip.github.io/categories/%E6%8A%80%E8%83%BD/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+</urlset>
