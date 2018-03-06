@@ -492,7 +492,7 @@
       
         
           
-            <p>  目前项目中用到Spring的地方很多，很多功能都能在sping中找到解决方案，正如我现在想要说的缓存实现，Spring Cache已经为我们提供了很好的解决方案，并且提供了默认实现，增加几个注解立刻就能使用，确实挺好，但是在实际使用过程中还是觉得不太方便，主要就是因为要保持缓存注解方法间的名称保持一致，在@CacheEvict中需要指定所有需要清除的缓存信息（通过name，key等属性），方法比较多、比较分散的时候维护难度就会随之提高，稍有不慎就会导致数据的不一致；故此引出今天分享讨论的一种缓存实现：“通过Mybatis的拦截机制实现Mapper(DAO)层的数据缓存”。<br>  <a href="http://blog.csdn.net/mingjia1987/article/details/79424272" target="_blank" rel="noopener">http://blog.csdn.net/mingjia1987/article/details/79424272</a></p>
+            <p>  目前项目中用到Spring的地方很多，很多功能都能在sping中找到解决方案，正如我现在想要说的缓存实现，Spring Cache已经为我们提供了很好的解决方案，并且提供了默认实现，增加几个注解立刻就能使用，确实挺好，但是在实际使用过程中还是觉得不太方便，主要就是因为要保持缓存注解方法间的名称保持一致，在@CacheEvict中需要指定所有需要清除的缓存信息（通过name，key等属性），方法比较多、比较分散的时候维护难度就会随之提高，稍有不慎就会导致数据的不一致；故此引出今天分享讨论的一种缓存实现：“通过Mybatis的拦截机制实现Mapper(DAO)层的数据缓存”。<br>  <a href="https://github.com/mingjia-vip/MyBatisCache" target="_blank" rel="noopener">https://github.com/mingjia-vip/MyBatisCache</a></p>
 <p>  该实现的逻辑就是参考mybatis的二级缓存，针对使用sql语句查询的dao层，思路就是拦截所有的DAO层方法，解析方法对应的sql语句，对sql语句进行分类处理，分类很简单就两类，query类和update类，query主要是指select语句，update值得就是insert、delete喝update语句了；</p>
 <p>  对于query类，方法第一次执行的时候查询数据库，将查询结果缓存到cache中，之后在此调用该方法的时候直接从cache中查询；对于update类方法，就是解析sql中的表名，当方法执行成功后，根据表名将cache中所有涉及到该表的所有存储都清除，这样当有query类的方法sql中包含该表的缓存就不存在了，需要重新从数据库查询，然后再缓存，这样也就保证了数据的一致性。</p>
 <p>  逻辑很简单，下面就说一下实现：</p>
@@ -507,7 +507,7 @@
 <p>  主要逻辑就是对query类和update类的处理，“query”的逻辑主要是‘ else｛｝’部分，逻辑在最开始已经说了，就是缓存数据，之后cache中没有的才去查数据库；“update”部分处理都是一样的，就是从sql中提取出表名，根据表明从MyBatisCacheConfiguration.TABLE_METHOD中得到方法在缓存中的key，最终清除缓存。</p>
 <p>  通过这个实现，默认就对所有的mapper方法进行了缓存（如果有不想缓存的加上@MyBatisCache(disCache = true)），不用每个方法都去添加一遍@Cacheable注解，而且不用关心name，key等属性的维护，自动维护数据的一致性；功能上和mybatis的二级缓存逻辑没啥区别，主要就是不用在xml文件中添加cache的标签了，再有就是集成了PageHelper插件，解决了分页插件和mybatis的二级缓存联合使用的数据一致性问题，对于分页数据也可以正常缓存。</p>
 <p>  该实现很简单，功能也是相对简陋，当然我说的方式也应该可以通过spring cache的自定义方式来实现，再有对于分页插件和Mybatis的二级缓存结合使用问题的解决应该有更简单的解决办法；在此主要是抛砖引玉，希望有想法的朋友分享下好的想法。</p>
-<p>  写demo的时候pagehelper用的v4，后这对v5的重新设计也做了相应的修改，欢迎指教:<br>  <a href="http://blog.csdn.net/mingjia1987/article/details/79424272" target="_blank" rel="noopener">http://blog.csdn.net/mingjia1987/article/details/79424272</a></p>
+<p>  写demo的时候pagehelper用的v4，后这对v5的重新设计也做了相应的修改，欢迎指教:<br>  <a href="https://github.com/mingjia-vip/MyBatisCache" target="_blank" rel="noopener">https://github.com/mingjia-vip/MyBatisCache</a></p>
 
           
         
