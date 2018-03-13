@@ -555,7 +555,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mingjia-vip.github.io/2018/02/28/通过Mybatis的拦截机制实现Mapper（DAO）层的数据缓存/">
+    <link itemprop="mainEntityOfPage" href="https://mingjia-vip.github.io/2018/02/28/通过Mybatis的拦截机制实现自动缓存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="桂斌">
@@ -574,7 +574,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/28/通过Mybatis的拦截机制实现Mapper（DAO）层的数据缓存/" itemprop="url">通过Mybatis的拦截机制实现Mapper（DAO）层的数据缓存</a></h1>
+                <a class="post-title-link" href="/2018/02/28/通过Mybatis的拦截机制实现自动缓存/" itemprop="url">通过Mybatis的拦截机制实现自动缓存</a></h1>
         
 
         <div class="post-meta">
@@ -648,7 +648,7 @@
       
         
           
-            <p>  目前项目中用到Spring的地方很多，很多功能都能在sping中找到解决方案，正如我现在想要说的缓存实现，Spring Cache已经为我们提供了很好的解决方案，并且提供了默认实现，增加几个注解立刻就能使用，确实挺好，但是在实际使用过程中还是觉得不太方便，主要就是因为要保持缓存注解方法间的名称保持一致，在@CacheEvict中需要指定所有需要清除的缓存信息（通过name，key等属性），方法比较多、比较分散的时候维护难度就会随之提高，稍有不慎就会导致数据的不一致；故此引出今天分享讨论的一种缓存实现：“通过Mybatis的拦截机制实现Mapper(DAO)层的数据缓存”。<br>  <a href="https://github.com/mingjia-vip/MyBatisCache" target="_blank" rel="noopener">https://github.com/mingjia-vip/MyBatisCache</a></p>
+            <p>  目前项目中用到Spring的地方很多，很多功能都能在sping中找到解决方案，正如我现在想要说的缓存实现，Spring Cache已经为我们提供了很好的解决方案，并且提供了默认实现，增加几个注解立刻就能使用，确实挺好，但是在实际使用过程中还是觉得不太方便，主要就是因为要保持缓存注解方法间的名称保持一致，在@CacheEvict中需要指定所有需要清除的缓存信息（通过name，key等属性），方法比较多、比较分散的时候维护难度就会随之提高，稍有不慎就会导致数据的不一致；故此引出今天分享讨论的一种缓存实现：“通过Mybatis的拦截机制实现自动缓存”。<br>  <a href="https://github.com/mingjia-vip/MyBatisCache" target="_blank" rel="noopener">https://github.com/mingjia-vip/MyBatisCache</a></p>
 <p>  该实现的逻辑就是参考mybatis的二级缓存，针对使用sql语句查询的dao层，思路就是拦截所有的DAO层方法，解析方法对应的sql语句，对sql语句进行分类处理，分类很简单就两类，query类和update类，query主要是指select语句，update值得就是insert、delete喝update语句了；</p>
 <p>  对于query类，方法第一次执行的时候查询数据库，将查询结果缓存到cache中，之后在此调用该方法的时候直接从cache中查询；对于update类方法，就是解析sql中的表名，当方法执行成功后，根据表名将cache中所有涉及到该表的所有存储都清除，这样当有query类的方法sql中包含该表的缓存就不存在了，需要重新从数据库查询，然后再缓存，这样也就保证了数据的一致性。</p>
 <p>  逻辑很简单，下面就说一下实现：</p>
