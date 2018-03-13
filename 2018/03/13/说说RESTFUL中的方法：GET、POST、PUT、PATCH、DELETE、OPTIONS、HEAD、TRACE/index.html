@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,github,coding,SEO," />
+  <meta name="keywords" content="REST,URI,HTTP METHOD,RFC 2616,RFC 5789," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="之前用Hexo搭建了自己的个人博客，发布到了Github Pages上，这么费劲搭建起来应该都是想show一下吧，接下来就是要做SEO配置了，好让google，百度等搜索引擎能够索引到，让网友们能够搜索到我们的博文。  但是gitbub做了防爬处理，你发现你的博文根本就没有收录，怎么判断有没有被收录呢？在搜索引擎中搜索一下：      site:mingjia-vip.github.io">
-<meta name="keywords" content="hexo,github,coding,SEO">
+<meta name="description" content="目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。使用restful架构最主要的是遵循rest的思想：“统一资源接口“。REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/">
+<meta name="keywords" content="REST,URI,HTTP METHOD,RFC 2616,RFC 5789">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HEXO个人博客搭建2">
-<meta property="og:url" content="https://mingjia-vip.github.io/2017/11/15/HEXO搭建个人博客2/index.html">
+<meta property="og:title" content="说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE">
+<meta property="og:url" content="https://mingjia-vip.github.io/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/index.html">
 <meta property="og:site_name" content="冥加">
-<meta property="og:description" content="之前用Hexo搭建了自己的个人博客，发布到了Github Pages上，这么费劲搭建起来应该都是想show一下吧，接下来就是要做SEO配置了，好让google，百度等搜索引擎能够索引到，让网友们能够搜索到我们的博文。  但是gitbub做了防爬处理，你发现你的博文根本就没有收录，怎么判断有没有被收录呢？在搜索引擎中搜索一下：      site:mingjia-vip.github.io">
+<meta property="og:description" content="目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。使用restful架构最主要的是遵循rest的思想：“统一资源接口“。REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-28T14:20:32.827Z">
+<meta property="og:updated_time" content="2018-03-13T10:18:44.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HEXO个人博客搭建2">
-<meta name="twitter:description" content="之前用Hexo搭建了自己的个人博客，发布到了Github Pages上，这么费劲搭建起来应该都是想show一下吧，接下来就是要做SEO配置了，好让google，百度等搜索引擎能够索引到，让网友们能够搜索到我们的博文。  但是gitbub做了防爬处理，你发现你的博文根本就没有收录，怎么判断有没有被收录呢？在搜索引擎中搜索一下：      site:mingjia-vip.github.io">
+<meta name="twitter:title" content="说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE">
+<meta name="twitter:description" content="目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。使用restful架构最主要的是遵循rest的思想：“统一资源接口“。REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://mingjia-vip.github.io/2017/11/15/HEXO搭建个人博客2/"/>
+  <link rel="canonical" href="https://mingjia-vip.github.io/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/"/>
 
 
 
 
 
-  <title>HEXO个人博客搭建2 | 冥加</title>
+  <title>说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE | 冥加</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mingjia-vip.github.io/2017/11/15/HEXO搭建个人博客2/">
+    <link itemprop="mainEntityOfPage" href="https://mingjia-vip.github.io/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="桂斌">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HEXO个人博客搭建2</h1>
+          <h1 class="post-title" itemprop="name headline">说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T17:03:17+08:00">
-                2017-11-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T18:08:35+08:00">
+                2018-03-13
               </time>
             
 
@@ -342,29 +342,21 @@
       
 
       
-        <p>  之前用Hexo搭建了自己的个人博客，发布到了Github Pages上，这么费劲搭建起来应该都是想show一下吧，接下来就是要做SEO配置了，好让google，百度等搜索引擎能够索引到，让网友们能够搜索到我们的博文。<br>  但是gitbub做了防爬处理，你发现你的博文根本就没有收录，怎么判断有没有被收录呢？在搜索引擎中搜索一下：<br>      site:mingjia-vip.github.io<br>      图：百度收录验证.png<br>      图：google收录验证.png<br>  结果就是未收录，不过没关系，以百度为例，已经告诉我们了（红色标记），你不自觉那我就主动呗，咱们自己去提交网站；对于google这里就不说了，需要梯子，流程几乎一样。</p>
-<p>  不废话，开始：<br>  1，注册一个百度账号，然后点击上图中提示的“提交网址”，然后按照下图说明添加网站并审核：<br>      图：添加网站.png<br>      需要为网站设置所属的领域<br>      图: 设置站点的领域.png<br>      接下来就是验证你的所有权了，三种方式，最简单的是第三种CNAME方式，但是需要自己域名，过；然后最简单的就是文件验证方式了：<br>      图：网站验证.png<br>      按照说明，首先下载html文件放到本地Hexo目录的/public目录中，然后依次执行生成静态网页和发布命令，这样验证文件就上传到github上了，或者通过git命令或其他git工具将文件上传到gitbub工程的根目录也是一样的，然后按照提示“点这里”访问刚刚上传上去的验证文件，如果可以打开标示已经成功上传，最后点击完成验证就可以了，等几个小时之后百度验证没有问题就会通过验证，这样我们的网站就被添加到了百度。（google也是一样的，而且验证方式也是这三种，谁抄谁的啊？哈哈）</p>
-<p>  2，还没完，网站虽然收录了，但是为了更好的被搜索引擎爬取，还需要创建网站地图文件，这个hexo有插件，直接敲命令，很简单：<br>      命令：<br>    $ npm install hexo-generator-sitemap –save<br>    $ npm install hexo-generator-baidu-sitemap –save</p>
-<pre><code>然后修改hexo根目录下在_config.yml文件，确保url和添加的网站一致，并且添加网站地图的文件名和路径：
-    url: https://mingjia-vip.github.io
-
-    # 自动生成sitemap
-    sitemap: 
-      path: sitemap.xml
-    baidusitemap: 
-      path: baidusitemap.xml
-
-配置完成后，重新创建静态网页：
-$ hexo g
-这个时候，在source文件夹下会看到多出两个文件：sitemap.xml和baidusitemap.xml，这就是网站地图文件。
-到此就可以等待搜索引擎抓取或者配置自动推送或者主动推送了。
-</code></pre><p>  3，自动推送配置：（以Next主题为例，其他类似）<br>      进入主题目录，修改主题配置文件，将baidu_push设置为true<br>      $ cd themes/next/<br>      $ vi _config.yml     （将baidu_push设置为true）<br>      查看百度推送脚本：<br>      $ cd themes/next/layout/_third-party/seo<br>      $ more baidu-push.swig<br>      查看脚本内容和百度推送手册中的是否一致：<br>      图：自动推送.png<br>      图：自动推送1.png</p>
-<pre><code>在此生成静态页面，并发布到github上
-$ hexo g
-$ hexo d
-这样子的话每次访问博客中的页面会自动向百度提交。
-</code></pre><p>  好，这就这么多，更多推送的操作可以看看百度和google的指导手册，接下来就是等几天看看能不能在百度和google搜索到了。<br>  由于有网上的教程说按照这种方式在百度上还是搜索不到（配置完几天后），又有的说在coding pages中可以，所以之前的博客网站在coding上也部署了一套，coding pages和github pagese功能相同，所以操作大家也可以尝试部署一下，主要还有个好处，就是coding的账号可以创建几个私有库，当然是免费的！同样通过上述的操作将网站添加到了百度。</p>
-<p>  接下俩就是不耐烦的等待啦，吼吼</p>
+        <p>  目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。<br>使用restful架构最主要的是遵循rest的思想：“统一资源接口“。<br>REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/api/person/1。<br>URI既可以看成是资源的地址，也可以看成是资源的名称，代表的就是唯一的资源，但是不能表示对资源的操作，操作是结合标准的http方法（get、post、put等）来实现的。</p>
+<p>下面说下restful的http方法有哪些：<br>GET、HEAD、POST、PUT、DELETE、OPTIONS、TRACE、PATCH<br>根据RFC2616第九章说明，http方法的定义有两点：safe and Idempotent，即安全性和幂等性，可以结合这两点对以上方法进行说明</p>
+<p>1，GET<br>  安全、幂等；<br>  用于获取资源；</p>
+<p>2，HEAD<br>  安全、幂等；<br>  与get方法类似，但不返回message body内容，仅仅是获得获取资源的部分信息（content-type、content-length）；<br>  restful框架中较少使用</p>
+<p>3，POST<br>  非安全、非幂等；<br>  用于创建子资源</p>
+<p>4，PUT<br>  非安全、幂等；<br>  用于创建、更新资源；</p>
+<p>5，DELETE<br>  非安全、幂等；<br>  删除资源；</p>
+<p>6，OPTIONS<br>  安全、幂等；<br>  用于url验证，验证接口服务是否正常；</p>
+<p>7，TEACE<br>  安全、幂等；<br>  维基百科“回显服务器收到的请求，这样客户端可以看到（如果有）哪一些改变或者添加已经被中间服务器实现。”<br>  restful框架中较少使用</p>
+<p>8，PATCH<br>  非安全、幂等；<br>  用于创建、更新资源，于PUT类似，区别在于PATCH代表部分更新；<br>  后来提出的接口方法，使用时可能去要验证客户端和服务端是否支持；</p>
+<p>接下来说一下日常中的使用：</p>
+<p>1，post和put的区别：<br>  post和put的区别在于uri，或者说post用于创建子资源，比如接口：POST /api/person/  会创建一个资源比如 /api/person/1或者/api/person/2 … 或者/api/person/n，创建了新的uri，而put方法创建资源的uri是 PUT /api/person/1，这样就创建了一个资源，如果1已经存在那么就是更新，所以put并不是只是更新操作。再有post是非幂等的。<br>  通常情况下，我们都会将post、get、put、delete对应到CRUD操作上，但实际上put并不是只能更新。</p>
+<p>2，patch的使用：<br>  patch是2010后成为的正式http方法，详见RFC5789，它是对put的补充，在没有patch之前，我们都是用put进行更新操作，这时候我们的接口中通常会有一个逻辑规则，如：如果对象的的一个字符属性为NULL，那么就是不更新该属性（字段）值，如果对象的字符属性是“”，那么就更新该属性（字段）的值，通过这种方式来避免全部覆盖的操作。现在有了patch就解决了这种判断，在put接口中不管属性是不是null，都进行更新，在patch接口中就对非null的进行更新；</p>
+<p>3，uri的使用问题<br>  上边也介绍过了，uri即使代表资源的，通过不同的方法来区分操作，那么像如下的接口就已经违反了restful规范：<br>    GET /api/getPerson/1<br>    DELETE /api/delPerson/1<br>    GET /api/person/get/1<br>    DELETE /api/person/delete/1<br>  在复合规范的前提下，uri的定义应该也是实际使用中应该考虑的，比如uri包涵那些信息？如版本、资源分类、资源名称、表述格式等，对于设计上的不多说了，直接看下面的url：<br>    /api/1.0/person/man/1.xml<br>    /api/2.0/person/man/1.json<br>  这样的url很常见也很直观，对不同版本接口增加了版本信息，并且对数据的表述格式进行了显式指定，不是不好，但是按照“统一资源接口”的思想，资源的uri已经不唯一了。<br>  有说对于版本号，表述形式等可以放到http的accept中进行指定，但具体没有验证过，希望经验人士多多指教！</p>
+<p>4，查询问题的讨论：<br>  按照rest建议，查询操作要使用get方法，但是实际情况中处理起来比较麻烦，如：报表统计查询，需要传递的参数很多，就SpingMVC来说，如果采用get方法，那么@RequestParam接收的参数非常多，接口很难看，通常会封装为java对象，希望通过@RqeustBody接收并处理，但这是不支持get方法，所以很蛋疼；<br>  对于这种情况，最简单的方式就是改成post方式，而且很多公司都是这么干的，但又觉得违反了restful规范；不改成post方式的话可能就需要将传递的参数对象细腻转为json串，后端字符串接收后再转为对象，这样感觉耶不太好，url中显式输出参数信息，个别情况json串太长活着包含特殊字符等也都很麻烦。<br>  希望经验人士多多指教！</p>
 
       
     </div>
@@ -382,13 +374,15 @@ $ hexo d
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/REST/" rel="tag"># REST</a>
           
-            <a href="/tags/github/" rel="tag"># github</a>
+            <a href="/tags/URI/" rel="tag"># URI</a>
           
-            <a href="/tags/coding/" rel="tag"># coding</a>
+            <a href="/tags/HTTP-METHOD/" rel="tag"># HTTP METHOD</a>
           
-            <a href="/tags/SEO/" rel="tag"># SEO</a>
+            <a href="/tags/RFC-2616/" rel="tag"># RFC 2616</a>
+          
+            <a href="/tags/RFC-5789/" rel="tag"># RFC 5789</a>
           
         </div>
       
@@ -401,8 +395,8 @@ $ hexo d
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/13/HEXO搭建个人博客/" rel="next" title="HEXO搭建个人博客">
-                <i class="fa fa-chevron-left"></i> HEXO搭建个人博客
+              <a href="/2018/03/04/初五-2018/" rel="next" title="初五.2018">
+                <i class="fa fa-chevron-left"></i> 初五.2018
               </a>
             
           </div>
@@ -410,10 +404,6 @@ $ hexo d
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/28/通过Mybatis的拦截机制实现Mapper（DAO）层的数据缓存/" rel="prev" title="通过Mybatis的拦截机制实现Mapper（DAO）层的数据缓存">
-                通过Mybatis的拦截机制实现Mapper（DAO）层的数据缓存 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
