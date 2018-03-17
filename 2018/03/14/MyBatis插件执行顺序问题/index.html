@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="REST,URI,HTTP METHOD,RFC 2616,RFC 5789," />
+  <meta name="keywords" content="Mybatis,Mybatis拦截器顺序,PageHelper 5," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。使用restful架构最主要的是遵循rest的思想：“统一资源接口“。REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/">
-<meta name="keywords" content="REST,URI,HTTP METHOD,RFC 2616,RFC 5789">
+<meta name="description" content="之前因为觉得spring cache的使用比较麻烦，所以弄了两个简单的MyBatisCache自动缓存插件 ，在测试过程中，PageHelper插件的版本变化引出了插件执行顺序的问题：    起因：PageHelper v4.x和v5.x在实现上进行了改变，PageHelper主要是拦截Executor的query方法，为select语句添加物理分页语句，问题就出在query方法上，query方法">
+<meta name="keywords" content="Mybatis,Mybatis拦截器顺序,PageHelper 5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE">
-<meta property="og:url" content="https://mingjia-vip.github.io/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/index.html">
+<meta property="og:title" content="MyBatis插件执行顺序问题">
+<meta property="og:url" content="https://mingjia-vip.github.io/2018/03/14/MyBatis插件执行顺序问题/index.html">
 <meta property="og:site_name" content="冥加">
-<meta property="og:description" content="目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。使用restful架构最主要的是遵循rest的思想：“统一资源接口“。REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/">
+<meta property="og:description" content="之前因为觉得spring cache的使用比较麻烦，所以弄了两个简单的MyBatisCache自动缓存插件 ，在测试过程中，PageHelper插件的版本变化引出了插件执行顺序的问题：    起因：PageHelper v4.x和v5.x在实现上进行了改变，PageHelper主要是拦截Executor的query方法，为select语句添加物理分页语句，问题就出在query方法上，query方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T10:18:44.945Z">
+<meta property="og:updated_time" content="2018-03-17T08:06:00.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE">
-<meta name="twitter:description" content="目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。使用restful架构最主要的是遵循rest的思想：“统一资源接口“。REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/">
+<meta name="twitter:title" content="MyBatis插件执行顺序问题">
+<meta name="twitter:description" content="之前因为觉得spring cache的使用比较麻烦，所以弄了两个简单的MyBatisCache自动缓存插件 ，在测试过程中，PageHelper插件的版本变化引出了插件执行顺序的问题：    起因：PageHelper v4.x和v5.x在实现上进行了改变，PageHelper主要是拦截Executor的query方法，为select语句添加物理分页语句，问题就出在query方法上，query方法">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://mingjia-vip.github.io/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/"/>
+  <link rel="canonical" href="https://mingjia-vip.github.io/2018/03/14/MyBatis插件执行顺序问题/"/>
 
 
 
 
 
-  <title>说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE | 冥加</title>
+  <title>MyBatis插件执行顺序问题 | 冥加</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mingjia-vip.github.io/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/">
+    <link itemprop="mainEntityOfPage" href="https://mingjia-vip.github.io/2018/03/14/MyBatis插件执行顺序问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="桂斌">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE</h1>
+          <h1 class="post-title" itemprop="name headline">MyBatis插件执行顺序问题</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T18:08:35+08:00">
-                2018-03-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T18:29:27+08:00">
+                2018-03-14
               </time>
             
 
@@ -342,21 +342,12 @@
       
 
       
-        <p>  目前互联网公司的应用架构基本都是前后端分离，后端的接口也基本上都是采用restful架构了，接下来就说说restful的使用。<br>使用restful架构最主要的是遵循rest的思想：“统一资源接口“。<br>REST全称：Representational State Transfer，翻译成中文就是“表述性状态转移”，表述的对象就是资源，在web的rertful架构中都是通过uri来一一对应资源，比如：/api/person/1。<br>URI既可以看成是资源的地址，也可以看成是资源的名称，代表的就是唯一的资源，但是不能表示对资源的操作，操作是结合标准的http方法（get、post、put等）来实现的。</p>
-<p>下面说下restful的http方法有哪些：<br>GET、HEAD、POST、PUT、DELETE、OPTIONS、TRACE、PATCH<br>根据RFC2616第九章说明，http方法的定义有两点：safe and Idempotent，即安全性和幂等性，可以结合这两点对以上方法进行说明</p>
-<p>1，GET<br>  安全、幂等；<br>  用于获取资源；</p>
-<p>2，HEAD<br>  安全、幂等；<br>  与get方法类似，但不返回message body内容，仅仅是获得获取资源的部分信息（content-type、content-length）；<br>  restful框架中较少使用</p>
-<p>3，POST<br>  非安全、非幂等；<br>  用于创建子资源</p>
-<p>4，PUT<br>  非安全、幂等；<br>  用于创建、更新资源；</p>
-<p>5，DELETE<br>  非安全、幂等；<br>  删除资源；</p>
-<p>6，OPTIONS<br>  安全、幂等；<br>  用于url验证，验证接口服务是否正常；</p>
-<p>7，TEACE<br>  安全、幂等；<br>  维基百科“回显服务器收到的请求，这样客户端可以看到（如果有）哪一些改变或者添加已经被中间服务器实现。”<br>  restful框架中较少使用</p>
-<p>8，PATCH<br>  非安全、幂等；<br>  用于创建、更新资源，于PUT类似，区别在于PATCH代表部分更新；<br>  后来提出的接口方法，使用时可能去要验证客户端和服务端是否支持；</p>
-<p>接下来说一下日常中的使用：</p>
-<p>1，post和put的区别：<br>  post和put的区别在于uri，或者说post用于创建子资源，比如接口：POST /api/person/  会创建一个资源比如 /api/person/1或者/api/person/2 … 或者/api/person/n，创建了新的uri，而put方法创建资源的uri是 PUT /api/person/1，这样就创建了一个资源，如果1已经存在那么就是更新，所以put并不是只是更新操作。再有post是非幂等的。<br>  通常情况下，我们都会将post、get、put、delete对应到CRUD操作上，但实际上put并不是只能更新。</p>
-<p>2，patch的使用：<br>  patch是2010后成为的正式http方法，详见RFC5789，它是对put的补充，在没有patch之前，我们都是用put进行更新操作，这时候我们的接口中通常会有一个逻辑规则，如：如果对象的的一个字符属性为NULL，那么就是不更新该属性（字段）值，如果对象的字符属性是“”，那么就更新该属性（字段）的值，通过这种方式来避免全部覆盖的操作。现在有了patch就解决了这种判断，在put接口中不管属性是不是null，都进行更新，在patch接口中就对非null的进行更新；</p>
-<p>3，uri的使用问题<br>  上边也介绍过了，uri即使代表资源的，通过不同的方法来区分操作，那么像如下的接口就已经违反了restful规范：<br>    GET /api/getPerson/1<br>    DELETE /api/delPerson/1<br>    GET /api/person/get/1<br>    DELETE /api/person/delete/1<br>  在复合规范的前提下，uri的定义应该也是实际使用中应该考虑的，比如uri包涵那些信息？如版本、资源分类、资源名称、表述格式等，对于设计上的不多说了，直接看下面的url：<br>    /api/1.0/person/man/1.xml<br>    /api/2.0/person/man/1.json<br>  这样的url很常见也很直观，对不同版本接口增加了版本信息，并且对数据的表述格式进行了显式指定，不是不好，但是按照“统一资源接口”的思想，资源的uri已经不唯一了。<br>  有说对于版本号，表述形式等可以放到http的accept中进行指定，但具体没有验证过，希望经验人士多多指教！</p>
-<p>4，查询问题的讨论：<br>  按照rest建议，查询操作要使用get方法，但是实际情况中处理起来比较麻烦，如：报表统计查询，需要传递的参数很多，就SpingMVC来说，如果采用get方法，那么@RequestParam接收的参数非常多，接口很难看，通常会封装为java对象，希望通过@RqeustBody接收并处理，但这是不支持get方法，所以很蛋疼；<br>  对于这种情况，最简单的方式就是改成post方式，而且很多公司都是这么干的，但又觉得违反了restful规范；不改成post方式的话可能就需要将传递的参数对象细腻转为json串，后端字符串接收后再转为对象，这样感觉耶不太好，url中显式输出参数信息，个别情况json串太长活着包含特殊字符等也都很麻烦。<br>  希望经验人士多多指教！</p>
+        <p>之前因为觉得spring cache的使用比较麻烦，所以弄了两个简单的<a href="https://123.com" target="_blank" rel="noopener">MyBatisCache自动缓存插件</a> ，在测试过程中，PageHelper插件的版本变化引出了插件执行顺序的问题：<br>    起因：PageHelper v4.x和v5.x在实现上进行了改变，PageHelper主要是拦截Executor的query方法，为select语句添加物理分页语句，问题就出在query方法上，query方法有两个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1，&lt;E&gt; List&lt;E&gt; query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey cacheKey, BoundSql boundSql) throws SQLException;</span><br><span class="line">2，&lt;E&gt; List&lt;E&gt; query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException;</span><br></pre></td></tr></table></figure><br>    两个方法参数不一样，其中第一个方法是被第二个方法座位内部调用，所以一般mybatis的插件对于Executer的query拦截都是拦截的第二个方法，包括PageHelper在v5之前也都是这么拦截的，所以在通常情况下插件执行顺序是这样的：<br>    比如插件配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=&quot;plugins&quot;&gt;</span><br><span class="line">  &lt;array&gt;</span><br><span class="line">    &lt;bean class=&quot;xxx.xxx.Interceptor1&quot;/&gt;</span><br><span class="line">    &lt;bean class=&quot;xxx.xxx.Interceptor2&quot;/&gt;</span><br><span class="line">    &lt;bean class=&quot;xxx.xxx.Interceptor3&quot;/&gt;</span><br><span class="line">  &lt;/array&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure><br>  如，配置了三个插件，三个插件的拦截配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Interceptor1：</span><br><span class="line">@Intercepts(&#123;</span><br><span class="line">	@Signature(type = Executor.class, method = &quot;query&quot;, args = &#123;MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">//Interceptor2：</span><br><span class="line">@Intercepts(&#123;</span><br><span class="line">	@Signature(type = Executor.class, method = &quot;query&quot;, args = &#123;MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">//Interceptor3：</span><br><span class="line">@Intercepts(&#123;</span><br><span class="line">	@Signature(type = Executor.class, method = &quot;query&quot;, args = &#123;MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>  三个插件的都是针对Executor类的四个参数的query方法进行拦截，这种情况下，拦截器的加载顺序是1、2、3，但是在interceptorChain.pluginAll()方法的层层代理处理后，拦截器的执行顺序变成了：<br>        3拦截前处理 &gt; 2拦截前处理 &gt; 1拦截前处理 &gt; executor.query() &gt; 1拦截后处理 &gt; 2拦截后处理 &gt; 3拦截后处理</p>
+<p>  这个顺序在使用过多个拦截器的人应该比较清楚，具体的原理就不多说了，以上是通常情况，但是在PageHelperV5对拦截方法进行变动，他的拦截处理后，跳过了Executor的四个参数query方法的调用，直接调用6个参数的query方法，这样就会导致多个插件执行顺序上的问题：</p>
+<p>  接着按照上边的例子说，将Interceptor2换成Interceptor2.1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=&quot;plugins&quot;&gt;</span><br><span class="line">  &lt;array&gt;</span><br><span class="line">    &lt;bean class=&quot;xxx.xxx.Interceptor1&quot;/&gt;</span><br><span class="line">    &lt;bean class=&quot;xxx.xxx.Interceptor2.1&quot;/&gt;</span><br><span class="line">    &lt;bean class=&quot;xxx.xxx.Interceptor3&quot;/&gt;</span><br><span class="line">  &lt;/array&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure><br>  执行顺序变成了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 &gt; 2.1 &gt; 1 executor.query() &gt; 1 &gt; 2.1 &gt; 3</span><br></pre></td></tr></table></figure><br>  但是1根本就不会执行，实际的执行顺序是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 &gt; 2.1 &gt; executor.query(6参数) &gt; 2.1 &gt; 3</span><br></pre></td></tr></table></figure></p>
+<p>  因为从2.1之后executor的四个参数的方法被跳过了，直接执行了6参数的query，所以Interceptor1没有拦截到，这就是问题所在。<br>  对于PageHelperV5打破”拦截秩序“的问题，作者也做了说明，<a href="https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/Interceptor.md" target="_blank" rel="noopener">QueryInterceptor规范</a> ,针对Interceptor1的问题，PageHelperV5作者给出的解决办法：<br> 1，修改Interceptor1的拦截策略，同时拦截4个和6个参数的query方法,这样就不再受“打破秩序者”的干扰；<br> 2，让“打破秩序者”最后执行，调整Interceptor1拦截器的配置顺序，放到Interceptor2.1的后边，变成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=&quot;plugins&quot;&gt;</span><br><span class="line">	&lt;array&gt;</span><br><span class="line">	  &lt;bean class=&quot;xxx.xxx.Interceptor2.1&quot;/&gt;</span><br><span class="line">	  &lt;bean class=&quot;xxx.xxx.Interceptor1&quot;/&gt;</span><br><span class="line">	  &lt;bean class=&quot;xxx.xxx.Interceptor3&quot;/&gt;</span><br><span class="line">	&lt;/array&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  PageHelperV5的这种改变面上看主要是可以直接获得boundSql等对象，不用再次转换，其他的改变还没有看，希望经验者<a href="https://blog.csdn.net/mingjia1987/article/details/79665002" target="_blank" rel="noopener">多多指教！</a></p>
 
       
     </div>
@@ -374,15 +365,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/REST/" rel="tag"># REST</a>
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
           
-            <a href="/tags/URI/" rel="tag"># URI</a>
+            <a href="/tags/Mybatis拦截器顺序/" rel="tag"># Mybatis拦截器顺序</a>
           
-            <a href="/tags/HTTP-METHOD/" rel="tag"># HTTP METHOD</a>
-          
-            <a href="/tags/RFC-2616/" rel="tag"># RFC 2616</a>
-          
-            <a href="/tags/RFC-5789/" rel="tag"># RFC 5789</a>
+            <a href="/tags/PageHelper-5/" rel="tag"># PageHelper 5</a>
           
         </div>
       
@@ -395,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/04/初五-2018/" rel="next" title="初五.2018">
-                <i class="fa fa-chevron-left"></i> 初五.2018
+              <a href="/2018/03/13/说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE/" rel="next" title="说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE">
+                <i class="fa fa-chevron-left"></i> 说说RESTFUL中的方法：GET、POST、PUT、PATCH、DELETE、OPTIONS、HEAD、TRACE
               </a>
             
           </div>
@@ -404,10 +391,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/14/MyBatis插件执行顺序问题/" rel="prev" title="MyBatis插件执行顺序问题">
-                MyBatis插件执行顺序问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
